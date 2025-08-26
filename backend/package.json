@@ -1,0 +1,15 @@
+{
+  "name": "cloudbook-backend",
+  "version": "1.0.0",
+  "description": "Place to store your tasks and other important things",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express.js": "^1.0.0",
+    "mongoose": "^8.18.0"
+  }
+}
