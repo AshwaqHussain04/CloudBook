@@ -4,12 +4,20 @@
   "description": "Place to store your tasks and other important things",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "server": "nodemon backend/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "express-validator": "^7.2.1",
     "express.js": "^1.0.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.18.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
