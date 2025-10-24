@@ -1,15 +1,11 @@
-import React, {useContext, useEffect} from 'react'
-import { Link , useLocation, NavLink } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Link, useLocation, NavLink } from "react-router-dom";
 
 export default function navbar() {
-  
   const location = useLocation();
-   useEffect(() => {    
-  }, [location]);
+  useEffect(() => {}, [location]);
 
-  
   return (
-
     <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
@@ -29,9 +25,9 @@ export default function navbar() {
         <div className="collapse navbar-collapse" id="navbarColor01">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-                <NavLink to="/" className="nav-link" activeclassname="active">
-                  Home
-                </NavLink>
+              <NavLink to="/" className="nav-link" activeclassname="active">
+                Home
+              </NavLink>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">
@@ -39,10 +35,14 @@ export default function navbar() {
               </a>
             </li>
             <li className="nav-item">
-              <NavLink to="/about" className="nav-link" activeclassname="active">
+              <NavLink
+                to="/about"
+                className="nav-link"
+                activeclassname="active"
+              >
                 About
               </NavLink>
-           </li>
+            </li>
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
@@ -77,9 +77,12 @@ export default function navbar() {
               type="search"
               placeholder="Search"
             />
-            <button className="btn btn-secondary my-2 my-sm-0" type="submit">
-              Search
-            </button>
+            <Link type="button" to={"/login"} className="btn btn-dark mx-2 w-50">
+              Login
+            </Link>
+            <Link type="button" to={"/signup"} className="btn btn-dark mx-2 w-50">
+              Sign-Up
+            </Link>
           </form>
         </div>
       </div>

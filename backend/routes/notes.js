@@ -50,7 +50,7 @@ router.post(
       notes.save;
 
       //return a successful message
-      res.status(200).json({ message: "Notes saved successfully" });
+      res.status(200).json(notes);
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Something went wrong" });

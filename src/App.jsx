@@ -7,6 +7,8 @@ import About from "./components/about";
 import NoteState from "./context/notes/NoteState.jsx";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Alert from "./components/alert.jsx";
+import Login from "./components/Login.jsx";
+import { Signup } from "./components/Signup.jsx";
 
 export default function App() {
   return (
@@ -19,6 +21,8 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
               {/* <Route path="/contact" element={<Contact />} /> */}
             </Routes>
           </div>

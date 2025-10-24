@@ -20,11 +20,12 @@ router.post(
       .withMessage("The password must be at least 5 characters long"),
   ],
   async (req, res) => {
+    let success = false;
     const errors = validationResult(req);
 
     // validation errors
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({ success, errors: errors.array() });
     }
 
     try {
@@ -32,7 +33,7 @@ router.post(
       let user = await User.findOne({ email: req.body.email });
 
       if (user) {
-        return res.status(400).json({ error: "Email already exists" });
+        return res.status(400).json({ success, error: "Email already exists" });
       }
       const salt = await bcrypt.genSalt(10);
       const secPass = await bcrypt.hash(req.body.password, salt);
@@ -49,10 +50,12 @@ router.post(
         },
       };
       const authToken = jwt.sign(data, JWT_SECRET);
-      res.status(201).json({ message: "User created successfully" });
+      success = true;
+      res.status(201).json({ success, message: "User created successfully" });
     } catch (err) {
+      success=false;
       console.error(err);
-      res.status(500).json({ error: "Something went wrong" });
+      res.status(500).json({ success, error: "Something went wrong" });
     }
   }
 );
@@ -68,6 +71,7 @@ router.post(
   ],
   async (req, res) => {
     const errors = validationResult(req);
+    let success = false;
     // validation errors
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -77,23 +81,27 @@ router.post(
     try {
       let user = await User.findOne({ email });
       if (!user) {
-        return res
-          .status(400)
-          .json({ error: "PLease try again with the correct credentials" });
+        success = false;
+        return res.status(400).json({
+          success,
+          error: "PLease try again with the correct credentials",
+        });
       }
 
       const comparePassword = await bcrypt.compare(password, user.password[0]);
       if (!comparePassword) {
-        return res
-          .status(400)
-          .json({ error: "PLease try again with the correct credentials" });
+        success = false;
+        return res.status(400).json({
+          success,
+          error: "PLease try again with the correct credentials",
+        });
       }
-
       const data = {
         id: user.id,
       };
       const authToken = jwt.sign(data, JWT_SECRET);
-      res.json(authToken);
+      success = true;
+      res.json({ success, authToken });
     } catch (errors) {
       console.error(errors);
       res.status(500).json({ error: "Interal Server Error" });
