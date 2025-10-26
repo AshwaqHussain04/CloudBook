@@ -9,14 +9,16 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Alert from "./components/alert.jsx";
 import Login from "./components/Login.jsx";
 import { Signup } from "./components/Signup.jsx";
+import AlertState from "./context/alert/AlertState.jsx";
 
 export default function App() {
   return (
     <>
       <NoteState>
         <BrowserRouter>
+        <AlertState>
           <Navbar />
-          <Alert message = "A random warning"/>
+          <Alert/>
           <div className="container">
             <Routes>
               <Route path="/" element={<Home />} />
@@ -26,6 +28,7 @@ export default function App() {
               {/* <Route path="/contact" element={<Contact />} /> */}
             </Routes>
           </div>
+          </AlertState>
         </BrowserRouter>
       </NoteState>
     </>

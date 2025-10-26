@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import alertContext from "../context/alert/AlertContext";
+import AlertState from "../context/alert/AlertState";
 
 export const Signup = () => {
+  let { signupAPI } = useContext(alertContext);
+  let navigate = useNavigate();
+
   const [credentials, setCredentials] = useState({
     name: "",
     email: "",
@@ -9,29 +14,9 @@ export const Signup = () => {
     cpassword: "",
   });
 
-  const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(`http://localhost:5000/api/auth/createuser`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: credentials.name,
-        email: credentials.email,
-        password: credentials.password,
-      }),
-    });
-    const json = await response.json();
-    if (credentials.password != credentials.cpassword) {
-      alert("please input correct password");
-    } else {
-      localStorage.setItem("token", json.authToken);
-      navigate("/");
-    }
-    
+    await signupAPI(credentials);
   };
 
   const onchange = (e) => {
@@ -40,6 +25,7 @@ export const Signup = () => {
 
   return (
     <div className="row">
+      <h2 className="mt-2">Signup to use CloudBook</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name-s" className="form-label mt-4">

@@ -13,8 +13,7 @@ const NoteState = (props) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        authtoken:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Y2VmYzQwNDgwZTIyZmNkZDgzOTcxYiIsImlhdCI6MTc1ODY0NTA3M30.xnnv6sGqOY8deZcDMXsO2xqTV1WfPAAOQ9P1EgTij-4",
+        authtoken: localStorage.getItem("token"),
       },
     });
     const json = await response.json();
@@ -30,12 +29,11 @@ const NoteState = (props) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        authtoken:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Y2VmYzQwNDgwZTIyZmNkZDgzOTcxYiIsImlhdCI6MTc1ODY0NTA3M30.xnnv6sGqOY8deZcDMXsO2xqTV1WfPAAOQ9P1EgTij-4",
+        authtoken: localStorage.getItem("token"),
       },
       body: JSON.stringify({ title, description, importance }),
     });
-    const note = await response.json();    
+    const note = await response.json();
     setnotes([...notes, note]);
   };
   //function to Delete a note
@@ -45,8 +43,7 @@ const NoteState = (props) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        authtoken:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Y2VmYzQwNDgwZTIyZmNkZDgzOTcxYiIsImlhdCI6MTc1ODY0NTA3M30.xnnv6sGqOY8deZcDMXsO2xqTV1WfPAAOQ9P1EgTij-4",
+        authtoken: localStorage.getItem("token"),
       },
     });
     console.log("Deleting the note with id" + id);
@@ -64,8 +61,7 @@ const NoteState = (props) => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          authtoken:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Y2VmYzQwNDgwZTIyZmNkZDgzOTcxYiIsImlhdCI6MTc1ODY0NTA3M30.xnnv6sGqOY8deZcDMXsO2xqTV1WfPAAOQ9P1EgTij-4",
+          authtoken: localStorage.getItem("token"),
         },
         body: JSON.stringify({
           id: id,
@@ -84,11 +80,10 @@ const NoteState = (props) => {
         newNotes[index].title = title;
         newNotes[index].description = description;
         newNotes[index].importance = importance;
-        break
+        break;
       }
     }
     setnotes(newNotes);
-    
   };
 
   return (

@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import alertContext from "../context/alert/AlertContext";
 
-export default function Alert(props) {
-  return (
-    <div className="alert alert-dismissible alert-warning">
-      <button type="button" className="btn-close" data-bs-dismiss="alert"></button>
-      {props.message}
-    </div>
-  );
+export default function Alert() {
+  const { popup, msg, setAlert } = useContext(alertContext);
+  useEffect(() => {
+    setTimeout(() => {
+      setAlert({
+        popup: null,
+        msg: null,
+      });
+    }, 5000);
+  }, [popup, msg, setAlert]);
+
+  return <div className={`alert alert-dismissible alert-${popup}`}>{msg}</div>;
 }
