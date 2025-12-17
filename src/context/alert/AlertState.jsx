@@ -38,6 +38,7 @@ const AlertState = (props) => {
         msg: "successfully signed up",
       });
       navigate("/");
+      
     }
   };
 

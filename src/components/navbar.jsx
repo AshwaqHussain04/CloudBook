@@ -42,11 +42,6 @@ export default function navbar() {
               </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Features
-              </a>
-            </li>
-            <li className="nav-item">
               <NavLink
                 to="/about"
                 className="nav-link"
@@ -54,33 +49,6 @@ export default function navbar() {
               >
                 About
               </NavLink>
-            </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                data-bs-toggle="dropdown"
-                href="#"
-                role="button"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Dropdown
-              </a>
-              <div className="dropdown-menu">
-                <Link className="dropdown-item" to="#">
-                  Action
-                </Link>
-                <a className="dropdown-item" href="#">
-                  Another action
-                </a>
-                <a className="dropdown-item" href="#">
-                  Something else here
-                </a>
-                <div className="dropdown-divider"></div>
-                <a className="dropdown-item" href="#">
-                  Separated link
-                </a>
-              </div>
             </li>
           </ul>
           {!localStorage.getItem("token") ? (

@@ -1,12 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import Navbar from "./navbar";
-import Note from "./Note";
+import Dashboard from "./Dashboard";
+import LandingPage from "./LandingPage";
 
 export default function home() {
+  const isAuthenticated = localStorage.getItem("token");
 
-  return (
-    <div>
-      <Note />
-    </div>
-  );
+  return <div>{isAuthenticated ? <Dashboard /> : <LandingPage />}</div>;
 }
